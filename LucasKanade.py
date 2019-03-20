@@ -14,26 +14,28 @@ def LucasKanade(It, It1, rect, p0 = np.zeros(2)):
     # Put your implementation here
     p = p0
     th = 0.001
-    dp = th
 
+    dp = th
     spline_It = getSpline(It)
     spline_It1 = getSpline(It1)
-
     xx, yy = getMeshGrid(rect)
+
+    #Generate template patch
     I = spline_It.ev(yy,xx).flatten()
 
     while np.linalg.norm(dp)>=th:
+        #Generate patch and gradients
         I1 = spline_It1.ev(yy+p[1], xx+p[0]).flatten()
         I1x = spline_It1.ev(yy+p[1], xx+p[0], dy=1).flatten()
         I1y = spline_It1.ev(yy+p[1], xx+p[0], dx=1).flatten()
 
+        #Calculate dp
         A = np.zeros((I1x.size,2))
         A[:, 0] = I1x
         A[:, 1] = I1y
-
         b = I - I1
-
         dp, _, _, _ = np.linalg.lstsq(A, b, rcond=None)
+
         p += dp
 
     return p
