@@ -34,18 +34,18 @@ if __name__ == '__main__':
             rect = rect_next
             p_prev = p.copy()
 
-        # if i in [1, 100, 200, 300, 400]:
-        #     im = np.stack((next_frame,)*3, axis=-1)
-        #     ax = plt.gca()
-        #     ax.imshow(im)
-        #     box = patches.Rectangle((rect_next[0],rect_next[3]),rect_next[2]-rect_next[0],rect_next[1]-rect_next[3],linewidth=1,edgecolor='r',facecolor='none')
-        #     box_n = patches.Rectangle((rects_n[i][0],rects_n[i][3]),rects_n[i][2]-rects_n[i][0],rects_n[i][1]-rects_n[i][3],linewidth=1,edgecolor='b',facecolor='none')
-        #     ax.add_patch(box)
-        #     ax.add_patch(box_n)
-        #     plt.savefig('q1-4-{}.png'.format(i))
-        #     # plt.show()
-        #     box.remove()
-        #     box_n.remove()
+        if i in [1, 100, 200, 300, 400]:
+            im = np.stack((next_frame,)*3, axis=-1)
+            ax = plt.gca()
+            ax.imshow(im)
+            box = patches.Rectangle((rect_next[0],rect_next[3]),rect_next[2]-rect_next[0],rect_next[1]-rect_next[3],linewidth=1,edgecolor='r',facecolor='none')
+            box_n = patches.Rectangle((rects_n[i][0],rects_n[i][3]),rects_n[i][2]-rects_n[i][0],rects_n[i][1]-rects_n[i][3],linewidth=1,edgecolor='b',facecolor='none')
+            ax.add_patch(box)
+            ax.add_patch(box_n)
+            plt.savefig('q1-4-{}.png'.format(i))
+            # plt.show()
+            box.remove()
+            box_n.remove()
 
 
     rects = np.array(rects)
